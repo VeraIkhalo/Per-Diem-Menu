@@ -27,8 +27,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
+      <body
+        className="min-h-full flex flex-col bg-zinc-50 text-zinc-900"
+        suppressHydrationWarning
+      >
         <header className="border-b border-zinc-200 bg-white">
           <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4 sm:px-6">
             <span className="text-sm font-semibold tracking-tight text-emerald-800">
