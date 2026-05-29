@@ -28,9 +28,7 @@ export function MenuBrowser() {
   const locationFromUrl = searchParams.get("locationId");
 
   const [locations, setLocations] = useState<LocationSummary[]>([]);
-  const [selectedLocationId, setSelectedLocationId] = useState(
-    () => locationFromUrl ?? "",
-  );
+  const [selectedLocationId, setSelectedLocationId] = useState("");
   const [menu, setMenu] = useState<MenuResponse | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null,
@@ -107,6 +105,12 @@ export function MenuBrowser() {
   useEffect(() => {
     void fetchLocations();
   }, [fetchLocations]);
+
+  useEffect(() => {
+    if (!locationFromUrl || locations.length === 0) return;
+    if (!locations.some((l) => l.id === locationFromUrl)) return;
+    setSelectedLocationId(locationFromUrl);
+  }, [locationFromUrl, locations]);
 
   useEffect(() => {
     if (!selectedLocationId || !selectedLocation) return;
